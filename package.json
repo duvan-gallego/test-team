@@ -6,7 +6,7 @@
   "scripts": {
     "sfe": "cd frontend && npm start",
     "sbe": "cd backend && npm start",
-    "start": "npm-run-all --parallel sfe sbe",
+    "start": "npm-run-all -p sfe sbe",
     "test": "cd frontend && npm test",
     "test:fe": "cd frontend && npm test",
     "test:be": "cd backend && npm test",
