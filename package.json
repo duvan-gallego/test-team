@@ -2,7 +2,10 @@
   "name": "team-interview",
   "version": "1.0.0",
   "description": "React test for team",
-  "dependencies": {},
+  "dependencies": {
+    "react-md": "^1.9.3",
+    "webfontloader": "^1.6.28"
+  },
   "scripts": {
     "sfe": "cd frontend && npm start",
     "sbe": "cd backend && npm start",
