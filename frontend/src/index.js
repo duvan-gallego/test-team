@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 import WebFontLoader from 'webfontloader';
+import './index.css';
+import * as serviceWorker from './serviceWorker';
+import App from './App';
 
 WebFontLoader.load({
-    google: {
-      families: ['Roboto:300,400,500,700', 'Material Icons'],
-    },
-  });
+  google: {
+    families: ['Roboto:300,400,500,700', 'Material Icons'],
+  },
+});
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
