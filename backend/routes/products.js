@@ -8,9 +8,13 @@ router.get('/', function(req, res, next) {
   const sizeValidated = size || 3;
   const finalProduct = ( (page || 1) * sizeValidated );
   const initialProduct = ( finalProduct - sizeValidated );
+  const reponse = {
+    data: products.slice(initialProduct , finalProduct),    
+    total: products.length
+  };
   // Return the products filtered with the params page and size
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify(products.slice(initialProduct , finalProduct)));
+  res.end(JSON.stringify(reponse));
 });
 
 module.exports = router;
