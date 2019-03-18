@@ -19,8 +19,6 @@ backend/node_modules
 .env.development.local
 .env.test.local
 .env.production.local
-.vscode
-.editorconfig
 .eslintcache
 
 npm-debug.log*
