@@ -1,4 +1,5 @@
-@import '../../../_globals';
+
+@import '../../../globals';
 
 .menuOptions {
   text-decoration: none;
@@ -6,10 +7,10 @@
   line-height: 64px;
   width: 120px;
   text-align: center;
-  color: $md-black;
   font-weight: bold;
+  color: $black;
 
   &--active {
-    background: $md-secondary-color;
+    background: $gray-header-buttons;
   }
 }

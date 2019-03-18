@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../_globals.scss';
 
 const Error404 = () => (
   <h1 className="global__empty_page">

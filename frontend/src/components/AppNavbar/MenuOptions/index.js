@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import cn from 'classnames';
 import './styles.scss';
 
 const options = [
@@ -21,16 +22,20 @@ const options = [
   }
 ];
 
-const MenuOptions = () => (
+const MenuOptions = ({ location }) => (
   <>
     {
       options.map(option => (
-        <Link to={option.link} className="menuOptions">
+        <Link
+          to={option.link}
+          key={option.link}
+          className={cn('menuOptions', { 'menuOptions--active' : location.pathname === option.link })}
+        >
           {option.displayName}
         </Link >
       ))
     }
   </>
-);
+)
 
-export default MenuOptions;
+export default withRouter(MenuOptions);

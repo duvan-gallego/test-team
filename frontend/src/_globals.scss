@@ -1,15 +1,9 @@
-@import '~react-md/src/scss/react-md';
+@import 'node_modules/react-md/src/scss/react-md';
 
-$md-primary-color: #C8C8C8;
-$md-secondary-color: #8C8C8C;
-$md-black: #000000;
+$md-primary-color: $md-grey-300;
+$md-secondary-color: $md-grey-500;
 
-.global {
-
-  &__empty_page {
-    display: flex;
-    justify-content: center;
-    margin-top: 10%;
-  }
-
-}
+// Vars
+$black: #000;
+$gray-header: #c8c8c8;
+$gray-header-buttons:#8C8C8C
