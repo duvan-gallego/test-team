@@ -1,9 +1,10 @@
 import React from 'react';
+import '../../_globals.scss';
 
 const Error404 = () => (
-  <div>
-    Page error 404
-  </div>
+  <h1 className="global__empty_page">
+    Error 404: Url not found.
+  </h1>
 );
 
 export default Error404;

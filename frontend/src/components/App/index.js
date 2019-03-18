@@ -1,17 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// Import NavBar
+import Appnavbar from '../AppNavbar';
+
+// Import pages
 import Home from '../Home';
 import Products from '../Products';
 import Clients from '../Clients';
 import Contact from '../Contact';
 import Error404 from '../Error404';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 
 const App = () => (
   <Router>
-    <header className="App-header">
-      <h1 className="App-title">Welcome to React</h1>
-    </header>
+    <Appnavbar />
     <div>
       <Switch>
         <Route exact path="/" component={Home} />

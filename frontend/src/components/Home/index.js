@@ -1,9 +1,10 @@
 import React from 'react';
+import '../../_globals.scss';
 
 const Home = () => (
-  <div>
+  <h1 className="global__empty_page">
     Home
-  </div>
+  </h1>
 );
 
 export default Home;
