@@ -1,7 +1,8 @@
 {
-  "name": "server",
+  "name": "team-interview-backend",
   "version": "1.0.0",
   "private": true,
+  "author": "Duvan Gallego",
   "scripts": {
     "start": "nodemon ./bin/www"
   },

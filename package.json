@@ -2,8 +2,7 @@
   "name": "team-interview",
   "version": "1.0.0",
   "description": "React test for team",
-  "dependencies": {
-  },
+  "dependencies": {},
   "scripts": {
     "sfe": "cd frontend && npm start",
     "sbe": "cd backend && npm start",
