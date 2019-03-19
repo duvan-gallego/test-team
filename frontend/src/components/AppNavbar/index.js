@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toolbar } from 'react-md';
-import MenuOptions from './MenuOptions';
+import MenuOptions from '../MenuOptions';
 import './styles.scss';
 
 const Appnavbar = () => (

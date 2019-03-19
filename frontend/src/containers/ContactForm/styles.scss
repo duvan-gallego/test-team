@@ -1,0 +1,15 @@
+@import '../../globals';
+
+.contactForm {
+  margin: 20px;
+  border: 2px solid $border-color;
+  border-radius: 15px;
+  width: 40%;
+  padding: 40px 50px 20px 50px;
+  
+  &__button {
+    margin-top: 15px;
+    float: right;
+  }
+
+}

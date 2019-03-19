@@ -5,10 +5,16 @@ const BE_URL = {
   production: 'https://www.mysuperproductionurl.com'
 };
 
-const apiInstance = (() => (
+export const apiInstance = (() => (
   Axios.create({
     baseURL: `${BE_URL[process.env.NODE_ENV]}/api`,
   })
 ))();
 
-export default apiInstance;
+export function errorHandler(error = {}) {
+  let message = 'Bad request';
+  if (error.toString() === 'Error: Network Error') {
+    message = 'Network error, check the network conection'
+  }  
+  throw new Error(message);
+}

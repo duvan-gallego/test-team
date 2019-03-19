@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 // Import NavBar
 import Appnavbar from '../AppNavbar';
@@ -12,7 +12,7 @@ import Contact from '../Contact';
 import Error404 from '../Error404';
 
 const App = () => (
-  <Router>
+  <>
     <Appnavbar />
     <div>
       <Switch>
@@ -24,7 +24,7 @@ const App = () => (
         <Route component={Error404} />
       </Switch>
     </div>
-  </Router>
+  </>
 );
 
 export default App;

@@ -1,11 +1,9 @@
 import { all } from 'redux-saga/effects'
 
-// import UserSaga from './user'
-// import ReposSaga from './repo'
+import contactSaga from '../containers/ContactForm/sagas';
 
 export default function* Sagas() {
   yield all([
-    // UserSaga(),
-    // ReposSaga(),
+    contactSaga(),
   ])
 }
