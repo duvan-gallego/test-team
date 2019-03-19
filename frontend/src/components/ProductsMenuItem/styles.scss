@@ -1,0 +1,32 @@
+@import '../../globals';
+
+.productsMenuItem {
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  padding-left: 10px;
+  display: flex;
+
+    &__icon {
+      border-radius: 50%;
+      background: $gray-icons;
+      color: $wite;
+      height: 40px;
+      width: 40px;
+      margin-top: 5px;
+      text-align: center;
+
+      &--image {
+        color: $wite;
+      }
+    }
+
+    &__text {
+      margin-left: 20px;
+    }
+
+  &:hover {
+    background: $menu-items;
+    cursor: pointer;
+  }
+}

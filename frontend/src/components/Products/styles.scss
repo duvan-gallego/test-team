@@ -1,0 +1,40 @@
+@import '../../globals';
+
+.products {
+  padding: 0;
+  display: flex;
+
+  &__menu {
+    height: calc(100vh - 50px);
+    width: 25%;
+    background: $wite;
+    position: fixed;
+    top: 50px;
+    border-right: 1px solid $border-color-products;
+
+    &_title {
+      color: $gray-text;
+      padding-top: 10px;
+      padding-left: 10px;
+      height: 50px;
+      margin-bottom: 0;
+    }
+
+  }
+
+  &__separator {
+    background-color: $border-color-products;;
+    height: 1px;
+    border: 0;
+  }
+
+  &__products_list {
+    height: 200vh;
+    background: $light-wite;
+    width: 75%;
+    float: right;
+    margin-top: 50px;
+  }
+
+
+}

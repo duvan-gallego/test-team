@@ -6,6 +6,7 @@ import './styles.scss';
 const Appnavbar = () => (
   <Toolbar
     colored
+    fixed
     className="appNavBar"
   >
     <MenuOptions />
