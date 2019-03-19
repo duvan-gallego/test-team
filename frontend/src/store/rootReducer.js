@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
-// import user from './user';
-// import repo from './repo';
+
+// import contact from '../containers/ContactForm/redux';
 
 
 const rootReducer = combineReducers({
-  // user,
-  // repo
+  //contact
 });
 
 export default rootReducer;
