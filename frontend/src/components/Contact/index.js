@@ -3,10 +3,10 @@ import ContactForm from '../../containers/ContactForm';
 import './styles.scss';
 import fields from './fields';
 
-const Contact = () =>  (    
+const Contact = () =>  (
   <div className="contact">
     <ContactForm fields={ fields } />
-  </div>    
+  </div>
 );
 
 export default Contact;

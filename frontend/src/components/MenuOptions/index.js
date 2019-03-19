@@ -22,20 +22,25 @@ const options = [
   }
 ];
 
-const MenuOptions = ({ location }) => (
-  <>
-    {
-      options.map(option => (
-        <Link
-          to={option.link}
-          key={option.link}
-          className={cn('menuOptions', { 'menuOptions--active' : location.pathname === option.link })}
-        >
-          {option.displayName}
-        </Link >
-      ))
-    }
-  </>
-)
+const MenuOptions = ({ location }) => {
+  const pathName = location.pathname.includes('/products') ? '/products' : location.pathname;
+  return (
+    <>
+      {
+        options.map(option => (
+          <Link
+            to={option.link}
+            key={option.link}
+            className={cn('menuOptions', { 'menuOptions--active' : pathName === option.link })}
+          >
+            {option.displayName}
+          </Link >
+        ))
+      }
+    </>
+  )
+};
+
+
 
 export default withRouter(MenuOptions);
