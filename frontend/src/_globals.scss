@@ -1,30 +1,31 @@
 @import 'node_modules/react-md/src/scss/react-md';
 
-$md-primary-color: $md-grey-300;
-$md-secondary-color: $md-grey-500;
+$md-primary-color: $md-grey-500;
+$md-secondary-color: $md-grey-300;
 
 // Vars
 $black: #000;
 $gray-header: #c8c8c8;
 $gray-header-buttons:#8C8C8C;
+$gray-from-buttons: #AFAFAF;
 $border-color: #D3D3D3;
 $light-wite:#FAFAFA;
 
-// Mixin to use the standar media query for small screen
+// Mixin to use a standar media query for small screen
 @mixin onSmallScreen {
   @media only screen and (max-width: 1224px) {
     @content;
   }
 }
 
-// Mixin to use the standar media query for tablets
+// Mixin to use a standar media query for tablets
 @mixin onTablet {
   @media only screen and (max-width: 768px) {
     @content;
   }
 }
 
-// Mixin to use the standar media query for cellphones
+// Mixin to use a standar media query for cellphones
 @mixin onCellPhone {
   @media only screen and (max-width: 320px) {
     @content;

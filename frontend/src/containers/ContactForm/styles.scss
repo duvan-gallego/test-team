@@ -4,12 +4,34 @@
   margin: 20px;
   border: 2px solid $border-color;
   border-radius: 15px;
-  width: 40%;
+  width: 600px;
   padding: 40px 50px 20px 50px;
-  
+
   &__button {
     margin-top: 15px;
     float: right;
+    background: $gray-from-buttons;
+    font-weight: bold;
+    color: $black;
+    padding: 10px 20px 10px 20px;
+    border-radius: 3px;
+
+    &--disabled {
+      opacity: 0.35;
+    }
   }
 
+}
+
+@include onTablet {
+  .contactForm {
+    padding: 20px 20px 20px 20px;
+  }
+}
+
+@include onCellPhone {
+  .contactForm {
+    padding: 15px 12px 15px 12px;
+    margin: 8px;
+  }
 }

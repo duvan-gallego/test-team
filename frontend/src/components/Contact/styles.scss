@@ -8,20 +8,8 @@
   justify-content: center;
 }
 
-@include onSmallScreen {
-  .contact {
-    background-color: red;
-  }
-}
-
-@include onTablet {
-  .contact {
-    background-color: blue;
-  }
-}
-
 @include onCellPhone {
   .contact {
-    background-color: yellow;
+    align-items: initial;
   }
 }
