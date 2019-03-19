@@ -1,18 +1,23 @@
 @import '../../globals';
 
 .contact {
-  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
   background: $light-wite;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &__form {
+    margin: 20px;
     border: 2px solid $border-color;
     border-radius: 15px;
     width: 40%;
-    height: 500px;
-    padding: 50px 50px 20px 50px;
+    padding: 40px 50px 20px 50px;
+  }
+
+  &__button {
+    margin-top: 15px;
+    float: right;
   }
 
 }
