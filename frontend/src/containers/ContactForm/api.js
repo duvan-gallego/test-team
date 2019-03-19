@@ -6,8 +6,8 @@ const contactApi = (payload) => (
     method: 'post',
     data: payload,
   })
-  .then(({ data: result }) => result)
-  .catch(errorHandler)
+    .then(({ data: result }) => result)
+    .catch(errorHandler)
 );
 
 export default contactApi;
