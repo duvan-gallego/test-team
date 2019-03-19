@@ -29,9 +29,10 @@ router.post('/', function(req, res) {
 
   console.log('************************************************************');
   console.log('CONTACT INFORMATION');
+  console.log('************************************************************');
   console.log(req.body);
   console.log('************************************************************');
-  
+
   return res.status(200).send({
     success: 'true',
     message: 'Contact info sent successfully'
