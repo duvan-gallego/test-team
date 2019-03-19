@@ -18,6 +18,12 @@ app.options("/*", function(req, res, next){
   res.send(200);
 });
 
+// global controller for post request
+app.post('/*',function(req,res,next){  
+  res.header('Access-Control-Allow-Origin', '*');
+  next(); 
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
