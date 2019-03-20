@@ -27,6 +27,21 @@
     margin-bottom: 0;
   }
 
+  &__error {
+    text-align: center;
+    color: red;
+    margin-top: 50px;
+  }
+
+  &__loading {
+    height: 50px;
+    width: 50px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
 }
 
 @include onTablet {

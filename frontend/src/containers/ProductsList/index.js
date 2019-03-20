@@ -1,73 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
+import { connect } from 'react-redux';
 import { FontIcon, TextField, Grid } from 'react-md';
 import cn from 'classnames';
 import ProductCard from '../../components/ProductCard';
+import fetchProducts from './actions';
+import loading from '../../assets/loading.gif';
 import './styles.scss';
 
-const FULL_COLUMN_SIZE = 12;
+const ONE_COLUMN_SIZE = 12;
 const TWO_COLUMNS_SIZE = 6;
+const PAGE_SIZE = 10;
+const ALL_CATEGORIES = 'All';
 
-const ProductsList = () => {
+const ProductsList = (props) => {
 
-  const [columnSize, setColumnSize] = useState(12);
+  const [columnSize, setColumnSize] = useState(ONE_COLUMN_SIZE);
+  const [searchString, setSearchString] = useState('');
+  const { fetchProducts, products, category } = props;
 
-  const list = [
-    {
-      "id": "c9a5c012-6295-48d5-a103-68ca76ff047b",
-      "name": "Intelligent Concrete Computer",
-      "description": "Omnis veritatis in aliquam aspernatur nulla. Officia quidem qui. Maxime veniam nulla sint qui dolorem qui saepe neque placeat. Magni culpa aut eos molestiae nihil molestias. Quidem consectetur quia quo blanditiis perspiciatis facere dolorem.",
-      "price": "752.00",
-      "brand": "Gusikowski - Ebert",
-      "stock": 44903,
-      "photo": "http://lorempixel.com/640/480/technics",
-      "categories": [
-        "Services"
-      ]
-    },
-    {
-      "id": "b98fba89-fd2e-493d-81f8-65ce6142bdcc",
-      "name": "Intelligent Fresh Keyboard",
-      "description": "Et omnis voluptas. Eveniet est nostrum beatae aut dolores qui illo quis. Eveniet libero sint consectetur dolor doloremque cumque quos iste.",
-      "price": "520.00",
-      "brand": "McCullough, Parisian and Waters",
-      "stock": 55349,
-      "photo": "http://lorempixel.com/640/480/sports",
-      "categories": [
-        "Office"
-      ]
-    },
-    {
-      "id": "bde2ab21-8880-4552-8f3a-e575b0513a1d",
-      "name": "Ergonomic Rubber Chips",
-      "description": "Esse eum sapiente. Impedit accusantium officiis similique sit veritatis. Quo nam quia sapiente non quas qui.",
-      "price": "149.00",
-      "brand": "Murphy Inc",
-      "stock": 7793,
-      "photo": "http://lorempixel.com/640/480/technics",
-      "categories": ["Tech", "Office"]
-    }, {
-      "id": "a8946d49-2ed5-4e8d-87ce-8e9900dfdc22",
-      "name": "Gorgeous Steel Chips",
-      "description": "Eos rem assumenda. Minima aperiam pariatur deleniti mollitia sed. Maiores saepe magnam. Et voluptates omnis corrupti. Eos possimus reiciendis repudiandae ea voluptatum. Omnis corporis similique.",
-      "price": "268.00",
-      "brand": "Fadel, Lemke and Weber",
-      "stock": 98720,
-      "photo": "http://lorempixel.com/640/480/business",
-      "categories": ["Office"]
-    }, {
-      "id": "747a3b2c-8125-4dca-9c37-9e4b41b8a77a",
-      "name": "Refined Frozen Table",
-      "description": "Nulla occaecati qui laboriosam reprehenderit veritatis ea eaque. Blanditiis consequuntur enim mollitia reprehenderit est sunt corrupti quibusdam error. Provident minus non labore et alias aut quos rerum.",
-      "price": "526.00",
-      "brand": "Carter and Sons",
-      "stock": 28915,
-      "photo": "http://lorempixel.com/640/480/food",
-      "categories": ["Office"]
+  useEffect(() => {
+    if (products && products.data) {
+      setSearchString('');
+      fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
     }
-  ];
+  }, [category]);
+
+
+  useEffect(() => {
+    fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
+    document.addEventListener('scroll', debounce(handleScroll, 100));
+  }, []);
+
 
   const handlerViewModeClick = (size) => {
     setColumnSize(size);
+  }
+
+  const handlerSearch = (value) => {
+    fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES, value);
+    setSearchString(value);
+  }
+
+  const handleScroll = (e) => {
+    const bottom = e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop <= (e.target.scrollingElement.clientHeight + 1);
+    if (bottom) {
+      console.log('bottom of page');
+      // fetchProducts(PAGE_SIZE, parseInt(products.page) + 1);
+    }
+
   }
 
   return (
@@ -76,8 +58,8 @@ const ProductsList = () => {
         <div className="productsList__rows_view">
           <div>
             <FontIcon
-              className={cn('productsList__icon', { 'productsList__icon--active' : columnSize === FULL_COLUMN_SIZE })}
-              onClick={() => handlerViewModeClick(FULL_COLUMN_SIZE)}
+              className={cn('productsList__icon', { 'productsList__icon--active' : columnSize === ONE_COLUMN_SIZE })}
+              onClick={() => handlerViewModeClick(ONE_COLUMN_SIZE)}
             >
               view_list
             </FontIcon>
@@ -89,7 +71,7 @@ const ProductsList = () => {
             </FontIcon>
           </div>
           <div>
-            Showing <b>10</b> products - Hidden: <b>5</b>
+            Showing <b>{products.elementsFetched || 0}</b> products - Hidden: <b>{(products.totalElements - products.elementsFetched) || 0}</b>
           </div>
         </div>
         <TextField
@@ -98,13 +80,35 @@ const ProductsList = () => {
           lineDirection="center"
           placeholder="Type any word to search..."
           className="md-cell md-cell--bottom productsList__search"
+          onChange={handlerSearch}
+          value={searchString}
         />
       </header>
-      <Grid>
-        { list.map((item) => <ProductCard key={ item.id } columnSize={columnSize} { ...item } twoColumnsSize={TWO_COLUMNS_SIZE} />) }
-      </Grid>
+      {products && products.data &&
+        <Grid>
+          {  products.data.map((item) => <ProductCard key={ item.id } columnSize={columnSize} { ...item } twoColumnsSize={TWO_COLUMNS_SIZE} />) }
+        </Grid>
+      }
+      {products && products.data && products.data.length === 0 &&
+        <h2 className="productsList__error">No se han encontrado resultados...</h2>
+      }
+      {products.isFetching &&
+        <img src={loading} alt="Loading..." className="productsList__loading" />
+      }
     </div>
   )
 };
 
-export default ProductsList;
+ProductsList.propTypes = {
+  products: PropTypes.object,
+  location: PropTypes.object,
+  fetchProducts: PropTypes.func,
+};
+
+const mapStateToProps = ({ products }) => ({ products });
+
+const actions = {
+  fetchProducts
+};
+
+export default connect(mapStateToProps, actions)(ProductsList);
