@@ -1,11 +1,12 @@
 @import '../../globals';
 
 .contact {
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   background: $light-wite;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 }
 
 @include onCellPhone {
