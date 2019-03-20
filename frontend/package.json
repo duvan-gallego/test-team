@@ -27,6 +27,7 @@
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test",
+    "coverage": "npm test -- --coverage",
     "lint": "eslint ./src/**/*.js --cache",
     "lint:fix": "eslint src/**/*.js --fix"
   },

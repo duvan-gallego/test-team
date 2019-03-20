@@ -1,7 +1,7 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import cn from 'classnames';
 import { FontIcon } from 'react-md';
-import { Link } from 'react-router-dom';
 import './styles.scss';
 
 const ProductsMenuItem = ({ icon, text, link, location  }) => (
@@ -13,4 +13,4 @@ const ProductsMenuItem = ({ icon, text, link, location  }) => (
   </Link>
 );
 
-export default ProductsMenuItem;
+export default withRouter(ProductsMenuItem);
