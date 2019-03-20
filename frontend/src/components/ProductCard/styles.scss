@@ -1,7 +1,6 @@
 @import '../../globals';
 
-.card {
-  margin-bottom: 15px;
+.productCard {
 
   &__content {
     display: flex;
@@ -15,7 +14,37 @@
   }
 
   &__text {
-    width: 75%
+    width: 75%;
+    margin-left: 15px;
+
+    &--description {
+      max-height: 98px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
   }
-  
+
+  &--two-columns {
+    height: 300px;
+  }
+
+}
+
+@include onTablet {
+  .productCard--two-columns {
+    height: auto;
+  }
+}
+
+@include onTabletPortrait {
+  .productCard {
+
+    &__content {
+      flex-direction: column;
+    }
+
+    &__text {
+      margin-top: 10px;
+    }
+  }
 }

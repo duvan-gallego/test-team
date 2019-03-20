@@ -30,6 +30,12 @@ $light-wite:#FAFAFA;
   }
 }
 
+// Mixin to use a standar media query for tablets in portrait
+@mixin onTabletPortrait {
+  @media only screen and (max-width: 500px) {
+    @content;
+  }
+}
 // Mixin to use a standar media query for cellphones
 @mixin onCellPhone {
   @media only screen and (max-width: 320px) {

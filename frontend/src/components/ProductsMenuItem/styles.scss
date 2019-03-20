@@ -36,3 +36,10 @@
     cursor: pointer;
   }
 }
+
+
+@include onTablet {
+  .productsMenuItem__text {
+    display: none;
+  }
+}
