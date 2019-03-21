@@ -8,9 +8,9 @@
   width: 120px;
   text-align: center;
   font-weight: bold;
-  color: $black;
+  color: $neutral-black;
 
   &--active {
-    background: $gray-header-buttons;
+    background: $gray-6;
   }
 }

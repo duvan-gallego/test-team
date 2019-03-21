@@ -7,13 +7,13 @@
   &__menu {
     height: calc(100vh - 50px);
     width: 25%;
-    background: $wite;
+    background: $neutral-wite;
     position: fixed;
     top: 50px;
-    border-right: 1px solid $border-color-products;
+    border-right: 1px solid $gray-1;
 
     &_title {
-      color: $gray-text;
+      color: $gray-7;
       padding-top: 10px;
       padding-left: 10px;
       height: 50px;
@@ -23,7 +23,7 @@
   }
 
   &__separator {
-    background-color: $border-color-products;;
+    background-color: $gray-1;
     height: 1px;
     border: 0;
   }

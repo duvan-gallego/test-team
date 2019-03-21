@@ -2,7 +2,7 @@
 
 .productsMenuItem {
   text-decoration: none;
-  color: $black;
+  color: $neutral-black;
   height: 50px;
   width: 100%;
   line-height: 50px;
@@ -11,15 +11,15 @@
 
     &__icon {
       border-radius: 50%;
-      background: $gray-icons;
-      color: $wite;
+      background: $gray-8;
+      color: $neutral-wite;
       height: 40px;
       width: 40px;
       margin-top: 5px;
       text-align: center;
 
       &--image {
-        color: $wite;
+        color: $neutral-wite;
       }
     }
 
@@ -28,11 +28,11 @@
     }
 
     &--active {
-      background: $menu-items;
+      background: $gray-2;
     }
 
   &:hover {
-    background: $menu-items;
+    background: $gray-2;
     cursor: pointer;
   }
 }
