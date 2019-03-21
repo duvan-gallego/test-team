@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import cn from 'classnames';
 import './styles.scss';
@@ -39,6 +40,10 @@ const MenuOptions = ({ location }) => {
       }
     </>
   )
+};
+
+MenuOptions.propTypes = {
+  location: PropTypes.string.isRequired
 };
 
 export default withRouter(MenuOptions);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import cn from 'classnames';
 import { FontIcon } from 'react-md';
@@ -12,5 +13,12 @@ const ProductsMenuItem = ({ icon, text, link, location  }) => (
     <span className="productsMenuItem__text">{text}</span>
   </Link>
 );
+
+ProductsMenuItem.propTypes = {
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired
+};
 
 export default withRouter(ProductsMenuItem);
