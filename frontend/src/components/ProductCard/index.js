@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Card, CardTitle, CardText, Cell } from 'react-md';
 import './styles.scss';
 
-const ProductCard = ({ name, description, price, brand, stock, photo, categories, columnSize, twoColumnsSize }) => (
+const ProductCard = ({ name, description, price, brand, stock, photo, columnSize, twoColumnsSize }) => (
   <Cell size={columnSize} tabletSize={12} phoneSize={12}>
     <Card className={cn('productCard', { 'productCard--two-columns' : columnSize === twoColumnsSize })}>
       <CardTitle title={name} subtitle={brand} />
@@ -24,5 +25,16 @@ const ProductCard = ({ name, description, price, brand, stock, photo, categories
     </Card>
   </Cell>
 );
+
+ProductCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  brand: PropTypes.string.isRequired,
+  stock: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  columnSize: PropTypes.string.isRequired,
+  twoColumnsSize : PropTypes.string.isRequired
+};
 
 export default ProductCard;

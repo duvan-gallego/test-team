@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
 import { connect } from 'react-redux';
 import { FontIcon, TextField, Grid } from 'react-md';
 import cn from 'classnames';
@@ -19,34 +18,32 @@ const ProductsList = (props) => {
   const [columnSize, setColumnSize] = useState(ONE_COLUMN_SIZE);
   const [searchString, setSearchString] = useState('');
   const [fetchMoreProducts, setFetchMoreProducts] = useState(false);
-  const { fetchProducts, products, category } = props;
+  const { fetchProducts: fetchProductsAction, products, category } = props;
 
   const handleScroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
-    setFetchMoreProducts(true);    
+    setFetchMoreProducts(true);
   }
-  
+
   useEffect(() => {
-    console.log('before if..');
     if (!fetchMoreProducts || products.isFetching || ( products.totalElements - products.elementsFetched ) === 0) return;
-    setFetchMoreProducts(false);    
+    setFetchMoreProducts(false);
     setTimeout(() => {
-      fetchProducts(PAGE_SIZE, Number(products.page) + 1, category || ALL_CATEGORIES);
-      console.log('bottom of page...');
-    },1000);
+      fetchProductsAction(PAGE_SIZE, Number(products.page) + 1, category || ALL_CATEGORIES);
+    }, 1000);
   }, [fetchMoreProducts]);
 
   useEffect(() => {
     if (products && products.data) {
       setSearchString('');
-      fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
-      window.scrollTo(0,0); 
+      fetchProductsAction(PAGE_SIZE, 1, category || ALL_CATEGORIES);
+      window.scrollTo(0,0);
     }
   }, [category]);
 
   useEffect(() => {
-    fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
-    document.addEventListener('scroll', handleScroll);    
+    fetchProductsAction(PAGE_SIZE, 1, category || ALL_CATEGORIES);
+    document.addEventListener('scroll', handleScroll);
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
@@ -57,7 +54,7 @@ const ProductsList = (props) => {
   }
 
   const handlerSearch = (value) => {
-    fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES, value);
+    fetchProductsAction(PAGE_SIZE, 1, category || ALL_CATEGORIES, value);
     setSearchString(value);
   }
 
@@ -112,14 +109,10 @@ const ProductsList = (props) => {
 };
 
 ProductsList.propTypes = {
-  products: PropTypes.object,
-  fetchProducts: PropTypes.func,
+  products: PropTypes.object.isRequired,
+  fetchProducts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ products }) => ({ products });
 
-const actions = {
-  fetchProducts
-};
-
-export default connect(mapStateToProps, actions)(ProductsList);
+export default connect(mapStateToProps, { fetchProducts })(ProductsList);

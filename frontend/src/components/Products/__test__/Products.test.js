@@ -14,15 +14,15 @@ const props = {
 describe('<Products />', () => {
   it('The component renders', () => {
     const wrapper = shallow(<Products { ...props } />);
-    expect(wrapper.find('Fragment').length).toBe(1);
+    expect(wrapper.find('Fragment')).toHaveLength(1);
   });
   it('Renders an `.products__menu_title`', () => {
     const wrapper = shallow(<Products { ...props } />);
-    expect(wrapper.find('.products__menu_title').length).toBe(1);
+    expect(wrapper.find('.products__menu_title')).toHaveLength(1);
   });
   it('Renders AppNavbar', () => {
     const wrapper = shallow(<Products { ...props } />);
-    expect(wrapper.find('withRouter(ProductsMenuItem)').length).toBe(4);
+    expect(wrapper.find('withRouter(ProductsMenuItem)')).toHaveLength(4);
   });
 });
 

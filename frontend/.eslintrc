@@ -10,11 +10,12 @@
     ],
     "react/prop-types": 0,
     "no-underscore-dangle": 0,
+    "react/forbid-prop-types": 0,
     "linebreak-style": 0,
     "no-plusplus": 0,
     "import/imports-first": ["error", "absolute-first"],
     "import/newline-after-import": "error",
-    "indent": ["error", 2],    
+    "indent": ["error", 2],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
@@ -31,5 +32,8 @@
     "navigator": true,
     "jest": true
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "env": {
+    "jasmine": true
+   }
 }

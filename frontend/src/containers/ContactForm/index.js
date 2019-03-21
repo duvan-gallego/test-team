@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TextField, Button } from 'react-md';
 import cn from 'classnames';
@@ -6,7 +7,7 @@ import sendContactForm from './actions';
 import './styles.scss';
 
 
-const ContactForm = ({ fields, sendContactForm }) => {
+const ContactForm = ({ fields, sendContactForm: sendContactFormAction }) => {
 
   const [formValues, setValues] = useState({
     firstName: '',
@@ -33,7 +34,7 @@ const ContactForm = ({ fields, sendContactForm }) => {
   }
 
   const handleOnClick = () => {
-    sendContactForm(formValues);
+    sendContactFormAction(formValues);
     setValues({
       firstName: '',
       lastName: '',
@@ -66,8 +67,9 @@ const ContactForm = ({ fields, sendContactForm }) => {
   )
 };
 
-const actions = {
-  sendContactForm
+ContactForm.propTypes = {
+  fields: PropTypes.array.isRequired,
+  sendContactForm: PropTypes.func.isRequired,
 };
 
-export default connect(null, actions)(ContactForm);
+export default connect(null, { sendContactForm })(ContactForm);

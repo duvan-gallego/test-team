@@ -4,7 +4,7 @@ import ProductsMenuItem from '../ProductsMenuItem';
 import ProductsList from '../../containers/ProductsList';
 import './styles.scss';
 
-const Products = (props) => (
+const Products = ({ match }) => (
   <>
     <div className="products__menu">
       <h4 className="products__menu_title">Categories</h4 >
@@ -15,7 +15,7 @@ const Products = (props) => (
       <ProductsMenuItem icon="folder" text="Office" link="/products/office" />
     </div>
     <div className="products__products_list">
-      <ProductsList category={props.match.params.productCategory}/>
+      <ProductsList category={match.params.productCategory}/>
     </div>
   </>
 );
