@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductsMenuItem from '../ProductsMenuItem';
 import ProductsList from '../../containers/ProductsList';
 import './styles.scss';
@@ -16,8 +17,11 @@ const Products = (props) => (
     <div className="products__products_list">
       <ProductsList category={props.match.params.productCategory}/>
     </div>
-
   </>
 );
+
+ProductsList.propTypes = {
+  match: PropTypes.object
+};
 
 export default Products;

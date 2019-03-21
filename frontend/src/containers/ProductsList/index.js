@@ -52,7 +52,6 @@ const ProductsList = (props) => {
     };
   }, []);
 
-
   const handlerViewModeClick = (size) => {
     setColumnSize(size);
   }

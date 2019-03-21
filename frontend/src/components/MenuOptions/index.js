@@ -41,6 +41,4 @@ const MenuOptions = ({ location }) => {
   )
 };
 
-
-
 export default withRouter(MenuOptions);
