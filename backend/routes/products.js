@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
   const productsFiltered = filterBySearchString.slice(initialProduct , finalProduct);
   const reponse = {
     data: productsFiltered,
-    elementsFetched: productsFiltered.length,
+    elementsFetched: productsFiltered.length + (size * (page - 1)),
     totalElements: filterBySearchString.length,
     page
   };

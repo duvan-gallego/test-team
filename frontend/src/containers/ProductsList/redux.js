@@ -5,7 +5,7 @@ import {
 } from './constants';
 
 const initialState = {
-	isFetching: false,
+  isFetching: false,
   data: null,
   elementsFetched: 0,
   totalElements: 0,
@@ -16,22 +16,23 @@ const initialState = {
 export default( state = initialState, action ) => {
   const {type, payload} = action;
   switch (type) {
-    case FETCH_PRODUCTS:
-      return {
-        ...state,
-        isFetching: true
-       };
-    case FETCH_PRODUCTS_SUCCESS:
-      return {
-        ...payload,
-        isFetching: false
-       };
-    case FETCH_PRODUCTS_ERROR:
-      return {
-        isFetching: false,
-        errorMsg: payload
-       };
-    default:
-      return state;
+  case FETCH_PRODUCTS:
+    return {
+      ...state,
+      isFetching: true
+    };
+  case FETCH_PRODUCTS_SUCCESS:
+    return {
+      ...payload,
+      data: payload.page === '1' ? payload.data : state.data.concat(payload.data),
+      isFetching: false
+    };
+  case FETCH_PRODUCTS_ERROR:
+    return {
+      isFetching: false,
+      errorMsg: payload
+    };
+  default:
+    return state;
   }
 }

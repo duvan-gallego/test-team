@@ -18,19 +18,38 @@ const ProductsList = (props) => {
 
   const [columnSize, setColumnSize] = useState(ONE_COLUMN_SIZE);
   const [searchString, setSearchString] = useState('');
+  const [fetchMoreProducts, setFetchMoreProducts] = useState(false);
   const { fetchProducts, products, category } = props;
+
+  const handleScroll = () => {
+    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    setFetchMoreProducts(true);    
+  }
+  
+  useEffect(() => {
+    console.log('before if..');
+    if (!fetchMoreProducts || products.isFetching || ( products.totalElements - products.elementsFetched ) === 0) return;
+    setFetchMoreProducts(false);    
+    setTimeout(() => {
+      fetchProducts(PAGE_SIZE, Number(products.page) + 1, category || ALL_CATEGORIES);
+      console.log('bottom of page...');
+    },1000);
+  }, [fetchMoreProducts]);
 
   useEffect(() => {
     if (products && products.data) {
       setSearchString('');
       fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
+      window.scrollTo(0,0); 
     }
   }, [category]);
 
-
   useEffect(() => {
     fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES);
-    document.addEventListener('scroll', debounce(handleScroll, 100));
+    document.addEventListener('scroll', handleScroll);    
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
 
@@ -41,15 +60,6 @@ const ProductsList = (props) => {
   const handlerSearch = (value) => {
     fetchProducts(PAGE_SIZE, 1, category || ALL_CATEGORIES, value);
     setSearchString(value);
-  }
-
-  const handleScroll = (e) => {
-    const bottom = e.target.scrollingElement.scrollHeight - e.target.scrollingElement.scrollTop <= (e.target.scrollingElement.clientHeight + 1);
-    if (bottom) {
-      console.log('bottom of page');
-      // fetchProducts(PAGE_SIZE, parseInt(products.page) + 1);
-    }
-
   }
 
   return (
@@ -84,15 +94,18 @@ const ProductsList = (props) => {
           value={searchString}
         />
       </header>
+      {products.isFetching &&
+        <img src={loading} alt="Loading..." className="productsList__loading" />
+      }
       {products && products.data &&
         <Grid>
           {  products.data.map((item) => <ProductCard key={ item.id } columnSize={columnSize} { ...item } twoColumnsSize={TWO_COLUMNS_SIZE} />) }
         </Grid>
       }
-      {products && products.data && products.data.length === 0 &&
+      {products && products.data && products.data.length === 0 && !products.isFetching &&
         <h2 className="productsList__error">No se han encontrado resultados...</h2>
       }
-      {products.isFetching &&
+      {products && products.data && products.data.length >= 0 && products.isFetching &&
         <img src={loading} alt="Loading..." className="productsList__loading" />
       }
     </div>
@@ -101,7 +114,6 @@ const ProductsList = (props) => {
 
 ProductsList.propTypes = {
   products: PropTypes.object,
-  location: PropTypes.object,
   fetchProducts: PropTypes.func,
 };
 
