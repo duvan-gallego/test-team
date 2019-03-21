@@ -31,10 +31,10 @@ ProductCard.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   brand: PropTypes.string.isRequired,
-  stock: PropTypes.string.isRequired,
+  stock: PropTypes.number.isRequired,
   photo: PropTypes.string.isRequired,
-  columnSize: PropTypes.string.isRequired,
-  twoColumnsSize : PropTypes.string.isRequired
+  columnSize: PropTypes.number.isRequired,
+  twoColumnsSize : PropTypes.number.isRequired
 };
 
 export default ProductCard;

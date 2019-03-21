@@ -18,7 +18,7 @@ ProductsMenuItem.propTypes = {
   icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired
+  location: PropTypes.object.isRequired
 };
 
 export default withRouter(ProductsMenuItem);
