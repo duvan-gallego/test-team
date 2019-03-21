@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import ReduxStore  from './../../store';
 import { Route, Switch } from 'react-router-dom';
 
 // Import NavBar
@@ -11,8 +13,10 @@ import Clients from '../Clients';
 import Contact from '../Contact';
 import Error404 from '../Error404';
 
+const ReduxStoreInstance = ReduxStore();
+
 const App = () => (
-  <>
+  <Provider store={ReduxStoreInstance}>
     <Appnavbar />
     <div>
       <Switch>
@@ -25,7 +29,7 @@ const App = () => (
         <Route component={Error404} />
       </Switch>
     </div>
-  </>
+  </Provider>
 );
 
 export default App;
