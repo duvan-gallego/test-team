@@ -21,7 +21,7 @@ const ProductsList = (props) => {
   const { fetchProducts: fetchProductsAction, products, category } = props;
 
   const handleScroll = () => {
-    if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+    if ((window.innerHeight + document.documentElement.scrollTop + 1) <= document.documentElement.offsetHeight) return;
     setFetchMoreProducts(true);
   }
 
